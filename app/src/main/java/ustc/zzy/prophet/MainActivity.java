@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button2;
     private Button button3;
     private Button button4;
+    private TextView textView;
 
     ListView listView;
     MediaPlayer mediaPlayer;
@@ -54,10 +56,11 @@ public class MainActivity extends AppCompatActivity {
     private void initView(){
 
         isPaused=false;
-        button1=(Button) super.findViewById(R.id.button1);
-        button2=(Button) super.findViewById(R.id.button2);
-        button3=(Button) super.findViewById(R.id.button3);
-        button4=(Button) super.findViewById(R.id.button4);
+        button1=super.findViewById(R.id.button1);
+        button2=super.findViewById(R.id.button2);
+        button3=super.findViewById(R.id.button3);
+        button4=super.findViewById(R.id.button4);
+        textView=super.findViewById(R.id.textView);
 
         button1.setOnClickListener(clickListener);
         button2.setOnClickListener(clickListener);
@@ -90,16 +93,19 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.button1:
                     button1.setVisibility(View.INVISIBLE);
                     button2.setVisibility(View.VISIBLE);
+                    textView.setText("那便是她们的住址。");
                     break;
 
                 case R.id.button2:
                     button2.setVisibility(View.INVISIBLE);
                     button3.setVisibility(View.VISIBLE);
+                    textView.setText("哪怕这世间最澄清的水，");
                     break;
 
                 case R.id.button3:
                     button3.setVisibility(View.INVISIBLE);
                     button4.setVisibility(View.VISIBLE);
+                    textView.setText("只要够深，也能让人沉溺。");
                     break;
 
                 case R.id.button4:

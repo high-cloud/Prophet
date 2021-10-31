@@ -10,6 +10,7 @@
         android:layout_width="415dp"
         android:layout_height="233dp"
         android:layout_marginTop="52dp"
+        android:contentDescription="disco elysium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -17,9 +18,9 @@
 
     <ListView
         android:id="@+id/yiyu"
-        android:layout_width="409dp"
-        android:layout_height="323dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="295dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
