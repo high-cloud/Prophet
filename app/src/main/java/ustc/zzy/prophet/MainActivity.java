@@ -1,19 +1,32 @@
 package ustc.zzy.prophet;
 
-import android.content.ComponentName;
-import android.content.Intent;
+
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CursorAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity {
+import ustc.zzy.prophet.information.AppAdapter;
+import ustc.zzy.prophet.information.ApplicationDao;
+import ustc.zzy.prophet.information.MyDatabase;
+
+public class MainActivity extends Activity {
     private Button button1;
     private Button button2;
     private Button button3;
@@ -37,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+        if(mediaPlayer==null)
+            return;
         if(mediaPlayer.isPlaying()) {
             isPaused=true;
             mediaPlayer.pause();
@@ -67,7 +82,11 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(clickListener);
         button4.setOnClickListener(clickListener);
 
+        Button button=super.findViewById(R.id.button_to_info);
+        button.setOnClickListener(clickListener);
 
+        Bee bee=new Bee(this);
+        bee.getPackages(); // 收集应用信息
 
     }
 
@@ -76,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.disco);
 
         listView=(ListView) super.findViewById(R.id.yiyu);
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,Yiyu.lines);
+        ArrayAdapter<String> adapter= new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Yiyu.lines);
         listView.setAdapter(adapter);
 
         mediaPlayer=MediaPlayer.create(this,R.raw.surrender);
@@ -84,6 +103,22 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer.start();
     }
 
+    private void initInformationShow(){
+        setContentView(R.layout.activity_information);
+
+        ApplicationDao applicationDao= MyDatabase.getInstance(getApplicationContext()).getApplicationDao();
+        String[] from={"_id","app_name"};
+        int[] to={R.id.app_id,R.id.app_name};
+
+
+        // initialize recyclerView
+        RecyclerView recyclerView=super.findViewById(R.id.info_list);
+
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        AppAdapter appAdapter=new AppAdapter(applicationDao.getAll());
+        recyclerView.setAdapter(appAdapter);
+    }
 
     private final View.OnClickListener clickListener = new View.OnClickListener() {
 
@@ -115,10 +150,18 @@ public class MainActivity extends AppCompatActivity {
                     initViewDisco();
                     break;
 
+                case R.id.button_to_info:
+//                    Intent intent=new Intent(MainActivity.this,InformationActivity.class);
+//                    startActivity(intent);
+                    initInformationShow();
+                    break;
+
                 default:
                     break;
             }
 
         }
+
     };
+
 }
