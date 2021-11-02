@@ -18,9 +18,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Prophet">
         <activity
+            android:name=".ProphetActivity"
+            android:exported="true"
+            android:launchMode="singleTop"/>
+
+        <service
+            android:name=".BeeServer"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:launchMode="standard">
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +40,7 @@
         <activity
             android:name=".InformationActivity"
             android:exported="true"
-            android:launchMode="standard"/>
+            android:launchMode="standard" />
     </application>
 
 </manifest>

@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import ustc.zzy.prophet.information.App;
+import ustc.zzy.prophet.information.AppName;
+import ustc.zzy.prophet.information.AppNameDao;
 import ustc.zzy.prophet.information.ApplicationDao;
 import ustc.zzy.prophet.information.MyDatabase;
 
@@ -29,14 +31,16 @@ public class Bee {
 
         HashMap<String,String> packageNameToName=new HashMap<>();
 
+        AppNameDao appNameDao=MyDatabase.getInstance(context.getApplicationContext()).getAppNameDao();
 
         // 获取已经安装的所有应用, PackageInfo　系统类，包含应用信息
         List<PackageInfo> packages = context.getPackageManager().getInstalledPackages(0);
         for (int i = 0; i < packages.size(); i++) {
             PackageInfo packageInfo = packages.get(i);
-
+            AppName appName=new AppName(packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString());
+            appNameDao.insert(appName);
             // establish hash map
-            packageNameToName.put(packageInfo.packageName,packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString());
+            packageNameToName.put(packageInfo.packageName,appName.getApp_name());
         }
 
         //收集app信息

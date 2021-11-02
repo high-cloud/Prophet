@@ -6,6 +6,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+
+// actually app activitis
 @Entity(tableName = "apps")
 public class App {
     @PrimaryKey(autoGenerate = true)

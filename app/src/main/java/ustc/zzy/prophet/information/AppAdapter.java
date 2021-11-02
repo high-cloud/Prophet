@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ustc.zzy.prophet.R;
+import ustc.zzy.prophet.util.Time;
 
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
 
@@ -34,8 +35,8 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.getAppId().setText(String.valueOf(mApps.get(position).id));
-        holder.getAppName().setText(mApps.get(position).appName);
-        holder.getAppStartTime().setText(String.valueOf(mApps.get(position).appStartTime));
+        holder.getAppName().setText(mApps.get(position).getAppName());
+        holder.getAppStartTime().setText(Time.timeStamp2date(mApps.get(position).appStartTime));
     }
 
     @Override
