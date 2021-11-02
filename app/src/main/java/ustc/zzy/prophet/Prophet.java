@@ -16,8 +16,9 @@ import ustc.zzy.prophet.information.MyDatabase;
 
 // Prophet can see into future, predict what app will be opened
 public class Prophet {
-    Context context;
-    Bayes predictors;
+    private Context context;
+    private Bayes predictor;
+    private boolean isTrained=false;
 
 
     public Prophet(Context context) {
@@ -48,10 +49,18 @@ public class Prophet {
         }
 
         AppBayesFilter appBayesFilter=new AppBayesFilter(outSpace,inputSpace);
-        predictors=new Bayes(appBayesFilter,1);
+        predictor=new Bayes(appBayesFilter,1);
 
-        predictors.train(trainSet);
+        predictor.train(trainSet);
 
+        isTrained=true;
+    }
+
+    public String predict(AppBayesData appBayesData){
+        if(!isTrained){
+            return "fuck you, no money no predict";
+        }
+        return predictor.predict(appBayesData);
     }
 
 

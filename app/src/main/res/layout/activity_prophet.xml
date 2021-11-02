@@ -14,4 +14,39 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_prophet"
+        android:layout_width="218dp"
+        android:layout_height="243dp"
+        android:text="占卜师的水晶球闪烁着"
+        android:textSize="20sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/button_prophet2main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="147dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/button_init_prophet"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="训练" />
+
+        <Button
+            android:id="@+id/button_predict"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="预测" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

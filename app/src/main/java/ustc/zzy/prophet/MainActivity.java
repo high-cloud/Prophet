@@ -33,7 +33,6 @@ public class MainActivity extends Activity {
 
 
 
-//        startService(new Intent(this,BeeServer.class));
 
     }
 
@@ -67,6 +66,9 @@ public class MainActivity extends Activity {
         button2.setOnClickListener(clickListener);
         button3.setOnClickListener(clickListener);
         button4.setOnClickListener(clickListener);
+
+        Button buttonBee=super.findViewById(R.id.button_bee);
+        buttonBee.setOnClickListener(clickListener);
 
         Button buttonInfo=super.findViewById(R.id.button_to_info);
         buttonInfo.setOnClickListener(clickListener);
@@ -183,6 +185,10 @@ public class MainActivity extends Activity {
                     initViewDisco();
                     break;
                 }
+
+                case R.id.button_bee:
+                    startService(new Intent(MainActivity.this,BeeServer.class));
+                    break;
 
                 case R.id.button_to_info:
                     initInformationShow();
