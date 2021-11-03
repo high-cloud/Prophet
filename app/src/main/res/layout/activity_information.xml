@@ -9,7 +9,19 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/info_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="596dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_info2main"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="1dp" />
+
+    <Button
+        android:id="@+id/button_info2main"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:text="返回"
+        android:textSize="44sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

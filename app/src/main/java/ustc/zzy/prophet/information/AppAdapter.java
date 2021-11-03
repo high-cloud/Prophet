@@ -36,7 +36,9 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.getAppId().setText(String.valueOf(mApps.get(position).id));
         holder.getAppName().setText(mApps.get(position).getAppName());
-        holder.getAppStartTime().setText(Time.timeStamp2date(mApps.get(position).appStartTime));
+        holder.getAppStartTime().setText(Time.timeStamp2date(mApps.get(position).getAppStartTime()));
+        holder.getAppEndTime().setText(Time.timeStamp2date(mApps.get(position).getAppEndTime(),"HH:mm:ss"));
+        holder.getAppRunningTime().setText(String.valueOf(mApps.get(position).getAppRunningTime()/1000));
     }
 
     @Override
@@ -49,6 +51,8 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         private final TextView appId;
         private final TextView appName;
         private final TextView appStartTime;
+        private final TextView appEndTime;
+        private final TextView appRunningTime;
 
         public TextView getAppId() {
             return appId;
@@ -62,12 +66,23 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
             return appStartTime;
         }
 
+        public TextView getAppEndTime() {
+            return appEndTime;
+        }
+
+        public TextView getAppRunningTime() {
+            return appRunningTime;
+        }
+
         public ViewHolder(View view){
             super(view);
 
             appId=(TextView) view.findViewById(R.id.app_id);
             appName=(TextView) view.findViewById(R.id.app_name);
             appStartTime=(TextView) view.findViewById(R.id.app_start_time);
+            appEndTime=(TextView) view.findViewById(R.id.app_end_time);
+            appRunningTime=(TextView) view.findViewById(R.id.app_running_time);
+
         }
     }
 

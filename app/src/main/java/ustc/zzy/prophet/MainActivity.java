@@ -80,6 +80,8 @@ public class MainActivity extends Activity {
         button2Prophet.setOnClickListener(clickListener);
 
 
+
+
     }
 
     private void initViewDisco(){
@@ -102,6 +104,10 @@ public class MainActivity extends Activity {
 
     private void initInformationShow(){
         setContentView(R.layout.activity_information);
+
+
+        Button buttonInfo2Main=super.findViewById(R.id.button_info2main);
+        buttonInfo2Main.setOnClickListener(clickListener);
 
         ApplicationDao applicationDao= MyDatabase.getInstance(getApplicationContext()).getApplicationDao();
 
@@ -199,6 +205,8 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.name_2_main:
+
+                case R.id.button_info2main:
                     initView();
                     break;
 
