@@ -1,10 +1,16 @@
 package ustc.zzy.prophet;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import ustc.zzy.prophet.information.ApplicationDao;
+import ustc.zzy.prophet.information.MyDatabase;
 
 public class InformationActivity extends AppCompatActivity {
 

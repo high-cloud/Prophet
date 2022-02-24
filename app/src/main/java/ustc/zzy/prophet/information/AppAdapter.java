@@ -54,17 +54,6 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         private final TextView appEndTime;
         private final TextView appRunningTime;
 
-        public ViewHolder(View view) {
-            super(view);
-
-            appId = (TextView) view.findViewById(R.id.app_id);
-            appName = (TextView) view.findViewById(R.id.app_name);
-            appStartTime = (TextView) view.findViewById(R.id.app_start_time);
-            appEndTime = (TextView) view.findViewById(R.id.app_end_time);
-            appRunningTime = (TextView) view.findViewById(R.id.app_running_time);
-
-        }
-
         public TextView getAppId() {
             return appId;
         }
@@ -84,7 +73,20 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         public TextView getAppRunningTime() {
             return appRunningTime;
         }
+
+        public ViewHolder(View view){
+            super(view);
+
+            appId=(TextView) view.findViewById(R.id.app_id);
+            appName=(TextView) view.findViewById(R.id.app_name);
+            appStartTime=(TextView) view.findViewById(R.id.app_start_time);
+            appEndTime=(TextView) view.findViewById(R.id.app_end_time);
+            appRunningTime=(TextView) view.findViewById(R.id.app_running_time);
+
+        }
     }
+
+
 
 
 }

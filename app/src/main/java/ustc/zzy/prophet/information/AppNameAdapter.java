@@ -38,17 +38,17 @@ public class AppNameAdapter extends RecyclerView.Adapter<AppNameAdapter.ViewHold
     }
 
     // define what a list_item look like
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView appName;
+
+        public TextView getAppName() {
+            return appName;
+        }
 
         public ViewHolder(View view) {
             super(view);
 
             appName = (TextView) view.findViewById(R.id.list_name_app_name);
-        }
-
-        public TextView getAppName() {
-            return appName;
         }
     }
 }

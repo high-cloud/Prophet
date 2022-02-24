@@ -1,5 +1,6 @@
 package ustc.zzy.prophet.Bayes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /* ByesFilter is a interface define what input space

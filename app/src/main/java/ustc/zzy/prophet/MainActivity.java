@@ -24,6 +24,122 @@ import ustc.zzy.prophet.information.MyDatabase;
 public class MainActivity extends Activity {
 
     MediaPlayer mediaPlayer;
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if(mediaPlayer==null)
+            return;
+        if(mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        initView();
+    }
+
+    private void initView(){
+        setContentView(R.layout.activity_main);
+
+        Button button1=super.findViewById(R.id.button1);
+        Button button2=super.findViewById(R.id.button2);
+        Button button3=super.findViewById(R.id.button3);
+        Button button4=super.findViewById(R.id.button4);
+
+        button1.setOnClickListener(clickListener);
+        button2.setOnClickListener(clickListener);
+        button3.setOnClickListener(clickListener);
+        button4.setOnClickListener(clickListener);
+
+        Button buttonBee=super.findViewById(R.id.button_bee);
+        buttonBee.setOnClickListener(clickListener);
+
+        Button buttonInfo=super.findViewById(R.id.button_to_info);
+        buttonInfo.setOnClickListener(clickListener);
+
+        Button buttonName=super.findViewById(R.id.button_to_name);
+        buttonName.setOnClickListener(clickListener);
+
+        Button button2Prophet=super.findViewById(R.id.button_main2prophet);
+        button2Prophet.setOnClickListener(clickListener);
+
+
+
+
+    }
+
+    private void initViewDisco(){
+
+        setContentView(R.layout.disco);
+
+        ListView listView=(ListView) super.findViewById(R.id.yiyu);
+        ArrayAdapter<String> adapter= new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Yiyu.lines);
+        listView.setAdapter(adapter);
+
+        if(mediaPlayer==null) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.surrender);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        }
+        else {
+            mediaPlayer.start();
+        }
+    }
+
+    private void initInformationShow(){
+        setContentView(R.layout.activity_information);
+
+
+        Button buttonInfo2Main=super.findViewById(R.id.button_info2main);
+        buttonInfo2Main.setOnClickListener(clickListener);
+
+        ApplicationDao applicationDao= MyDatabase.getInstance(getApplicationContext()).getApplicationDao();
+
+
+        // initialize recyclerView
+        RecyclerView recyclerView=super.findViewById(R.id.info_list);
+
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        AppAdapter appAdapter=new AppAdapter(applicationDao.getAll());
+        recyclerView.setAdapter(appAdapter);
+    }
+
+    private void initNameShow(){
+        setContentView(R.layout.app_name);
+
+
+        Button button2Main=super.findViewById(R.id.name_2_main);
+        button2Main.setOnClickListener(clickListener);
+
+
+        AppNameDao appNameDao = MyDatabase.getInstance(getApplicationContext()).getAppNameDao();
+
+        // initialize recyclerView
+        RecyclerView recyclerView=super.findViewById(R.id.name_list);
+
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        AppNameAdapter appNameAdapter=new AppNameAdapter(appNameDao.getAll());
+        recyclerView.setAdapter(appNameAdapter);
+    }
+
     private final View.OnClickListener clickListener = new View.OnClickListener() {
 
         @Override
@@ -105,114 +221,5 @@ public class MainActivity extends Activity {
         }
 
     };
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        if (mediaPlayer == null)
-            return;
-        if (mediaPlayer.isPlaying()) {
-            mediaPlayer.pause();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        initView();
-    }
-
-    private void initView() {
-        setContentView(R.layout.activity_main);
-
-        Button button1 = super.findViewById(R.id.button1);
-        Button button2 = super.findViewById(R.id.button2);
-        Button button3 = super.findViewById(R.id.button3);
-        Button button4 = super.findViewById(R.id.button4);
-
-        button1.setOnClickListener(clickListener);
-        button2.setOnClickListener(clickListener);
-        button3.setOnClickListener(clickListener);
-        button4.setOnClickListener(clickListener);
-
-        Button buttonBee = super.findViewById(R.id.button_bee);
-        buttonBee.setOnClickListener(clickListener);
-
-        Button buttonInfo = super.findViewById(R.id.button_to_info);
-        buttonInfo.setOnClickListener(clickListener);
-
-        Button buttonName = super.findViewById(R.id.button_to_name);
-        buttonName.setOnClickListener(clickListener);
-
-        Button button2Prophet = super.findViewById(R.id.button_main2prophet);
-        button2Prophet.setOnClickListener(clickListener);
-
-
-    }
-
-    private void initViewDisco() {
-
-        setContentView(R.layout.disco);
-
-        ListView listView = (ListView) super.findViewById(R.id.yiyu);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1, Yiyu.lines);
-        listView.setAdapter(adapter);
-
-        if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.surrender);
-            mediaPlayer.setLooping(true);
-            mediaPlayer.start();
-        } else {
-            mediaPlayer.start();
-        }
-    }
-
-    private void initInformationShow() {
-        setContentView(R.layout.activity_information);
-
-
-        Button buttonInfo2Main = super.findViewById(R.id.button_info2main);
-        buttonInfo2Main.setOnClickListener(clickListener);
-
-        ApplicationDao applicationDao = MyDatabase.getInstance(getApplicationContext()).getApplicationDao();
-
-
-        // initialize recyclerView
-        RecyclerView recyclerView = super.findViewById(R.id.info_list);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        AppAdapter appAdapter = new AppAdapter(applicationDao.getAll());
-        recyclerView.setAdapter(appAdapter);
-    }
-
-    private void initNameShow() {
-        setContentView(R.layout.app_name);
-
-
-        Button button2Main = super.findViewById(R.id.name_2_main);
-        button2Main.setOnClickListener(clickListener);
-
-
-        AppNameDao appNameDao = MyDatabase.getInstance(getApplicationContext()).getAppNameDao();
-
-        // initialize recyclerView
-        RecyclerView recyclerView = super.findViewById(R.id.name_list);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        AppNameAdapter appNameAdapter = new AppNameAdapter(appNameDao.getAll());
-        recyclerView.setAdapter(appNameAdapter);
-    }
 
 }

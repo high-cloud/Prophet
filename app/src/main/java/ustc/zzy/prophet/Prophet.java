@@ -25,39 +25,39 @@ public class Prophet {
         this.context = context;
     }
 
-    public void init() {
-        AppNameDao appNameDao = MyDatabase.getInstance(context.getApplicationContext()).getAppNameDao();
-        ApplicationDao applicationDao = MyDatabase.getInstance(context.getApplicationContext()).getApplicationDao();
+    public void init(){
+        AppNameDao appNameDao= MyDatabase.getInstance(context.getApplicationContext()).getAppNameDao();
+        ApplicationDao applicationDao=MyDatabase.getInstance(context.getApplicationContext()).getApplicationDao();
 
 
-        List<String> outSpace = appNameDao.getAllName(); // 输出空间
-        List<Integer> inputSpace = new ArrayList<>(1440);   //输入空间
+        List<String> outSpace=appNameDao.getAllName(); // 输出空间
+        List<Integer> inputSpace=new ArrayList<>(1440);   //输入空间
 
         // 输入空间是 0~1440 代表每天的分钟数
-        for (int i = 0; i < 1440; ++i) {
+        for (int i=0;i<1440;++i){
             inputSpace.add(i);
         }
 
-        ArrayList<AppBayesData> trainSet = new ArrayList<>();
-        List<App> appInfos = applicationDao.getAll();
+        ArrayList<AppBayesData> trainSet=new ArrayList<>();
+        List<App> appInfos=applicationDao.getAll();
 
         // 初始化 训练集
-        for (int i = 0; i < appInfos.size(); ++i) {
-            App app = appInfos.get(i);
-            AppBayesData appBayesData = new AppBayesData(app.getAppName(), timeStamp2minuets(app.getAppStartTime()));
+        for(int i=0;i<appInfos.size();++i){
+            App app=appInfos.get(i);
+            AppBayesData appBayesData=new AppBayesData(app.getAppName(),timeStamp2minuets(app.getAppStartTime()));
             trainSet.add(appBayesData);
         }
 
-        AppBayesFilter appBayesFilter = new AppBayesFilter(outSpace, inputSpace);
-        predictor = new Bayes(appBayesFilter, 1);
+        AppBayesFilter appBayesFilter=new AppBayesFilter(outSpace,inputSpace);
+        predictor=new Bayes(appBayesFilter,1);
 
         predictor.train(trainSet);
 
-        isTrained = true;
+        isTrained=true;
     }
 
-    public String predict(AppBayesData appBayesData) {
-        if (!isTrained) {
+    public String predict(AppBayesData appBayesData){
+        if(!isTrained){
             return "fuck you, no money no predict";
         }
         return predictor.predict(appBayesData);

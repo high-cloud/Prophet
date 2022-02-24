@@ -13,29 +13,17 @@ public class App {
     @PrimaryKey(autoGenerate = true)
     int id;
 
-    @ColumnInfo(name = "app_name")
+    @ColumnInfo(name="app_name")
     String appName;
 
-    @ColumnInfo(name = "app_start_time")
+    @ColumnInfo(name="app_start_time")
     long appStartTime;
 
-    @ColumnInfo(name = "app_end_time")
+    @ColumnInfo(name="app_end_time")
     long appEndTime;
 
-    @ColumnInfo(name = "app_running_time")
+    @ColumnInfo(name="app_running_time")
     long appRunningTime;
-
-    @Ignore
-    public App() {
-    }
-
-    public App(int id, String appName, long appStartTime, long appEndTime) {
-        this.id = id;
-        this.appName = appName;
-        this.appStartTime = appStartTime;
-        this.appEndTime = appEndTime;
-        this.appRunningTime = appEndTime - appStartTime;
-    }
 
     public int getId() {
         return id;
@@ -75,5 +63,17 @@ public class App {
 
     public void setAppRunningTime(long appRunningTime) {
         this.appRunningTime = appRunningTime;
+    }
+
+    @Ignore
+    public App(){}
+
+
+    public App(int id,String appName, long appStartTime, long appEndTime) {
+        this.id=id;
+        this.appName = appName;
+        this.appStartTime = appStartTime;
+        this.appEndTime = appEndTime;
+        this.appRunningTime=appEndTime-appStartTime;
     }
 }

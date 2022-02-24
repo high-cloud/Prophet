@@ -1,9 +1,11 @@
 package ustc.zzy.prophet;
 
 
+import android.app.Application;
 import android.app.usage.UsageEvents;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.os.SystemClock;
 import android.util.Log;

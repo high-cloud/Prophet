@@ -4,6 +4,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
+import ustc.zzy.prophet.Bee;
+
 public class BeeServer extends Service {
     public BeeServer() {
     }

@@ -1,7 +1,6 @@
 package ustc.zzy.prophet;
 
 import ustc.zzy.prophet.util.Time;
-
 import org.junit.Test;
 
 import static org.junit.Assert.*;
