@@ -15,7 +15,7 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
-        assertEquals("1970-01-12 21:46:40",Time.timeStamp2date(1000000000));
+        assertEquals("1970-01-12 21:46:40", Time.timeStamp2date(1000000000));
     }
 
 }

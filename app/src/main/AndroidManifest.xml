@@ -20,7 +20,7 @@
         <activity
             android:name=".ProphetActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
 
         <service
             android:name=".BeeServer"

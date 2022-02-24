@@ -18,7 +18,7 @@ import ustc.zzy.prophet.information.MyDatabase;
 public class Prophet {
     private Context context;
     private Bayes predictor;
-    private boolean isTrained=false;
+    private boolean isTrained = false;
 
 
     public Prophet(Context context) {
@@ -65,7 +65,7 @@ public class Prophet {
 
 
     // transfer a unix time to minuets passed that day
-    public int timeStamp2minuets(long timeStamp){
-        return (int) (timeStamp / 1000 /60 %1440);
+    public int timeStamp2minuets(long timeStamp) {
+        return (int) (timeStamp / 1000 / 60 % 1440);
     }
 }

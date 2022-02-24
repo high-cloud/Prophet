@@ -24,61 +24,62 @@ import ustc.zzy.prophet.information.MyDatabase;
 public class Bee {
     Context context;
 
-    public Bee(Context context){
-        this.context=context;
+    public Bee(Context context) {
+        this.context = context;
     }
+
     public void getPackages() {
 
-        HashMap<String,String> packageNameToName=new HashMap<>();
+        HashMap<String, String> packageNameToName = new HashMap<>();
 
-        AppNameDao appNameDao=MyDatabase.getInstance(context.getApplicationContext()).getAppNameDao();
+        AppNameDao appNameDao = MyDatabase.getInstance(context.getApplicationContext()).getAppNameDao();
 
         // 获取已经安装的所有应用, PackageInfo　系统类，包含应用信息
         List<PackageInfo> packages = context.getPackageManager().getInstalledPackages(0);
         for (int i = 0; i < packages.size(); i++) {
             PackageInfo packageInfo = packages.get(i);
-            AppName appName=new AppName(packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString());
+            AppName appName = new AppName(packageInfo.applicationInfo.loadLabel(context.getPackageManager()).toString());
             appNameDao.insert(appName);
             // establish hash map
-            packageNameToName.put(packageInfo.packageName,appName.getApp_name());
+            packageNameToName.put(packageInfo.packageName, appName.getApp_name());
         }
 
         //收集app信息
-        UsageStatsManager usageStatsManager=(UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
-        ArrayList<App> apps =new ArrayList<>();
-        if(usageStatsManager!=null){
+        UsageStatsManager usageStatsManager = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
+        ArrayList<App> apps = new ArrayList<>();
+        if (usageStatsManager != null) {
 
-            ApplicationDao dao=MyDatabase.getInstance(context.getApplicationContext()).getApplicationDao();
+            ApplicationDao dao = MyDatabase.getInstance(context.getApplicationContext()).getApplicationDao();
             long lastQueryTime;
             try {
-                lastQueryTime= dao.maxAppEndTime(); // 已经记录的最大的endtime
-            }catch (Exception e){
-                lastQueryTime=System.currentTimeMillis()- SystemClock.elapsedRealtime();
+                lastQueryTime = dao.maxAppEndTime(); // 已经记录的最大的endtime
+            } catch (Exception e) {
+                lastQueryTime = System.currentTimeMillis() - SystemClock.elapsedRealtime();
             }
-            long bootTime=System.currentTimeMillis()- SystemClock.elapsedRealtime();
-            long endTime=System.currentTimeMillis();
-            UsageEvents.Event e=new UsageEvents.Event();
-            UsageEvents events=usageStatsManager.queryEvents(lastQueryTime,endTime);
+            long bootTime = System.currentTimeMillis() - SystemClock.elapsedRealtime();
+            long endTime = System.currentTimeMillis();
+            UsageEvents.Event e = new UsageEvents.Event();
+            UsageEvents events = usageStatsManager.queryEvents(lastQueryTime, endTime);
 
-            String name="";
-            long appStartTime=0;
-            long appEndTime=0;
+            String name = "";
+            long appStartTime = 0;
+            long appEndTime = 0;
 
-            while(events.hasNextEvent()){
+            while (events.hasNextEvent()) {
                 events.getNextEvent(e);
-                if(e.getEventType()==UsageEvents.Event.MOVE_TO_FOREGROUND){
-                    name=e.getPackageName();
-                    appStartTime=e.getTimeStamp();
-                    appEndTime=0;
+                if (e.getEventType() == UsageEvents.Event.MOVE_TO_FOREGROUND) {
+                    name = e.getPackageName();
+                    appStartTime = e.getTimeStamp();
+                    appEndTime = 0;
                 }
-                if(e.getEventType()==UsageEvents.Event.MOVE_TO_BACKGROUND){
-                    if(name==e.getPackageName() && appStartTime!=0){
-                        appEndTime=e.getTimeStamp();
-                        dao.insert(new App(0,packageNameToName.get(name),appStartTime,appEndTime));
-                        Log.i("bee",packageNameToName.get(name)+" "+appStartTime+" "+appEndTime);
+                if (e.getEventType() == UsageEvents.Event.MOVE_TO_BACKGROUND) {
+                    if (name == e.getPackageName() && appStartTime != 0) {
+                        appEndTime = e.getTimeStamp();
+                        dao.insert(new App(0, packageNameToName.get(name), appStartTime, appEndTime));
+                        Log.i("bee", packageNameToName.get(name) + " " + appStartTime + " " + appEndTime);
                     }
-                    name="";
-                    appStartTime=0;
+                    name = "";
+                    appStartTime = 0;
                 }
             }
         }

@@ -2,11 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
-
-
-
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -19,12 +15,11 @@
             android:id="@+id/app_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:text="list_item"
-            android:gravity="center"
             android:layout_weight="1"
             android:background="@drawable/list_app_border"
-            ></TextView>
+            android:gravity="center"
+            android:text="list_item"
+            android:textSize="25sp"></TextView>
 
         <TextView
             android:id="@+id/app_name"
@@ -48,13 +43,12 @@
             android:id="@+id/app_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="list_item"
-            android:gravity="center"
             android:layout_weight="1"
-            ></TextView>
+            android:gravity="center"
+            android:text="list_item"
+            android:textSize="15sp"></TextView>
 
-            <TextView
+        <TextView
             android:id="@+id/app_end_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -63,14 +57,14 @@
             android:text="list_item"
             android:textSize="20sp"></TextView>
 
-            <TextView
-                android:id="@+id/app_running_time"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="list_item"
-                android:gravity="center"
-                android:layout_weight="1"></TextView>
+        <TextView
+            android:id="@+id/app_running_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="list_item"
+            android:textSize="20sp"></TextView>
 
     </LinearLayout>
 

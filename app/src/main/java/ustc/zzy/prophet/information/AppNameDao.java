@@ -17,6 +17,6 @@ public interface AppNameDao {
     @Query("SELECT app_name FROM appname")
     List<String> getAllName();
 
-    @Insert(onConflict=OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(AppName appName);
 }

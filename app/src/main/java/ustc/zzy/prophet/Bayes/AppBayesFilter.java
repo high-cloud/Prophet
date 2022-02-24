@@ -3,7 +3,7 @@ package ustc.zzy.prophet.Bayes;
 import java.util.List;
 
 
-public class AppBayesFilter implements BayesFilter<AppBayesData>{
+public class AppBayesFilter implements BayesFilter<AppBayesData> {
 
     List<String> mOutputSpace;
     List<Integer> mInputSpace;
@@ -16,7 +16,7 @@ public class AppBayesFilter implements BayesFilter<AppBayesData>{
     @Override
     public int outOfData(AppBayesData data) {
         int first = mOutputSpace.indexOf(data.getOutput());
-        if(first==-1){
+        if (first == -1) {
             throw new Error();
         }
 
@@ -25,7 +25,7 @@ public class AppBayesFilter implements BayesFilter<AppBayesData>{
 
     @Override
     public int inputOfData(AppBayesData data, int ith_dimension) {
-        if(ith_dimension!=0){
+        if (ith_dimension != 0) {
             throw new Error();
         }
         return mInputSpace.indexOf(data.getInput());
@@ -33,7 +33,7 @@ public class AppBayesFilter implements BayesFilter<AppBayesData>{
 
     @Override
     public List<Integer> inputSpace_i(int ith_dimension) {
-        if(ith_dimension!=0){
+        if (ith_dimension != 0) {
             throw new Error();
         }
 
@@ -47,7 +47,7 @@ public class AppBayesFilter implements BayesFilter<AppBayesData>{
 
     @Override
     public <T> boolean ifDataTypeSame(T t) {
-        return t.getClass()==AppBayesData.class;
+        return t.getClass() == AppBayesData.class;
     }
 
     @Override

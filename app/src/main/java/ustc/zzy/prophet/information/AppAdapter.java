@@ -26,7 +26,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.list_app,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_app, parent, false);
         return new ViewHolder(view);
     }
 
@@ -37,8 +37,8 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         holder.getAppId().setText(String.valueOf(mApps.get(position).id));
         holder.getAppName().setText(mApps.get(position).getAppName());
         holder.getAppStartTime().setText(Time.timeStamp2date(mApps.get(position).getAppStartTime()));
-        holder.getAppEndTime().setText(Time.timeStamp2date(mApps.get(position).getAppEndTime(),"HH:mm:ss"));
-        holder.getAppRunningTime().setText(String.valueOf(mApps.get(position).getAppRunningTime()/1000));
+        holder.getAppEndTime().setText(Time.timeStamp2date(mApps.get(position).getAppEndTime(), "HH:mm:ss"));
+        holder.getAppRunningTime().setText(String.valueOf(mApps.get(position).getAppRunningTime() / 1000));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
     }
 
     // define what a list_item look like
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView appId;
         private final TextView appName;
         private final TextView appStartTime;

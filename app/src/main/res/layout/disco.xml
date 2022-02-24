@@ -11,10 +11,10 @@
         android:layout_height="233dp"
         android:layout_marginTop="52dp"
         android:contentDescription="disco elysium"
+        android:src="@drawable/dd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/dd"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/yiyu"

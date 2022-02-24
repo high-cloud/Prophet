@@ -19,7 +19,7 @@ public class BeeServer extends Service {
     public void onCreate() {
         super.onCreate();
 
-        Bee bee=new Bee(this);
+        Bee bee = new Bee(this);
         bee.getPackages(); // 收集应用信息
     }
 }

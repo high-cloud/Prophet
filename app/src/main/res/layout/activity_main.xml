@@ -68,8 +68,13 @@
         android:id="@+id/textView"
         android:layout_width="292dp"
         android:layout_height="78dp"
+<<<<<<< HEAD
+        android:gravity="center"
+        android:text="复仇女神就在家中的镜子里；"
+=======
         android:text="复仇女神就在家中的镜子里；"
         android:gravity="center"
+>>>>>>> eefd15ef8d13952d9cb8b812ec0a8defe4160527
         app:layout_constraintBottom_toTopOf="@+id/button1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

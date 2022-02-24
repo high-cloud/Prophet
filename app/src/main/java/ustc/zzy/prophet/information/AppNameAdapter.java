@@ -13,7 +13,6 @@ import java.util.List;
 import ustc.zzy.prophet.R;
 
 
-
 public class AppNameAdapter extends RecyclerView.Adapter<AppNameAdapter.ViewHolder> {
     List<AppName> mAppNames;
 
@@ -24,7 +23,7 @@ public class AppNameAdapter extends RecyclerView.Adapter<AppNameAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.list_name,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_name, parent, false);
         return new ViewHolder(view);
     }
 

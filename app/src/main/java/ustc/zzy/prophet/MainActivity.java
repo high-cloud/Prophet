@@ -144,7 +144,7 @@ public class MainActivity extends Activity {
 
         @Override
         public void onClick(View v) {
-            switch ( v.getId() ) {
+            switch (v.getId()) {
                 case R.id.button1: {
                     Button button1 = MainActivity.this.findViewById(R.id.button1);
                     Button button2 = MainActivity.this.findViewById(R.id.button2);
@@ -180,9 +180,9 @@ public class MainActivity extends Activity {
                 }
 
                 case R.id.button4: {
-                    Button button1=MainActivity.this.findViewById(R.id.button1);
+                    Button button1 = MainActivity.this.findViewById(R.id.button1);
 
-                    Button button4=MainActivity.this.findViewById(R.id.button4);
+                    Button button4 = MainActivity.this.findViewById(R.id.button4);
 
 
                     button4.setVisibility(View.INVISIBLE);
@@ -193,7 +193,7 @@ public class MainActivity extends Activity {
                 }
 
                 case R.id.button_bee:
-                    startService(new Intent(MainActivity.this,BeeServer.class));
+                    startService(new Intent(MainActivity.this, BeeServer.class));
                     break;
 
                 case R.id.button_to_info:
@@ -211,7 +211,7 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.button_main2prophet:
-                    startActivity(new Intent(MainActivity.this,ProphetActivity.class));
+                    startActivity(new Intent(MainActivity.this, ProphetActivity.class));
                     break;
 
                 default:
